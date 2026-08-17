@@ -27,3 +27,16 @@ Os livros exibidos atualmente são exemplos visuais. Arquivos integrais de livro
 Use apenas materiais próprios, de domínio público ou devidamente licenciados. Uma transcrição registra o que foi dito em tribunal; ela não comprova automaticamente cada declaração. O projeto tem finalidade educativa e não oferece aconselhamento jurídico.
 
 Site e IA desenvolvidos pela Rinko Digital.
+
+## Publicar no Netlify
+
+1. No Netlify, escolha **Add new site → Import an existing project**.
+2. Conecte o GitHub e selecione `RinkoDigital/yas-literaria-site`.
+3. O arquivo `netlify.toml` já configura o build `npm run build`, a pasta `.next` e o Node.js 22.
+4. Em **Site configuration → Environment variables**, crie:
+   - `OPENAI_API_KEY` — marque como segredo e cole a chave da Rinko Digital;
+   - `OPENAI_VECTOR_STORE_ID` — identificador do acervo documental;
+   - `OPENAI_CHAT_MODEL` — modelo usado pela YAS.
+5. Inicie o deploy. A rota `/api/chat` será publicada como função do servidor, mantendo a chave fora do navegador.
+
+Nunca adicione a chave da OpenAI ao GitHub, ao `netlify.toml` ou a qualquer arquivo público. Para trocar a chave depois, altere somente a variável de ambiente no painel do Netlify e publique novamente.

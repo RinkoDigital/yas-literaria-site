@@ -1,4 +1,3 @@
-import { env } from "cloudflare:workers";
 import { YAS_PERSONA } from "../../../lib/yas-persona";
 
 type RuntimeEnv = {
@@ -160,7 +159,13 @@ function extractCitations(payload: any) {
 }
 
 export async function POST(request: Request) {
-  const runtimeEnv = env as RuntimeEnv;
+  const runtimeEnv: RuntimeEnv = {
+    OPENAI_API_KEY: process.env.OPENAI_API_KEY,
+    OPENAI_API_KEY_CIPHERTEXT: process.env.OPENAI_API_KEY_CIPHERTEXT,
+    OPENAI_API_KEY_ENCRYPTION_KEY: process.env.OPENAI_API_KEY_ENCRYPTION_KEY,
+    OPENAI_VECTOR_STORE_ID: process.env.OPENAI_VECTOR_STORE_ID,
+    OPENAI_CHAT_MODEL: process.env.OPENAI_CHAT_MODEL,
+  };
   const clientId =
     request.headers.get("cf-connecting-ip") ||
     request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ||
