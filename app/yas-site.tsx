@@ -62,6 +62,8 @@ type LiteraryCopy = {
   memoryTitle: string;
   memoryBody: string;
   journeyNote: string;
+  portraitLocked: string;
+  fragmentsNeeded: string;
   stages: [string, string, string, string];
 };
 
@@ -311,6 +313,8 @@ const LITERARY_COPY: Record<Locale, LiteraryCopy> = {
     memoryTitle: "Fragmentos de Memória",
     memoryBody: "Uma jornada literária que cresce com leituras, resenhas e descobertas.",
     journeyNote: "Jornada narrativa em desenvolvimento",
+    portraitLocked: "A presença de Yas ainda está adormecida.",
+    fragmentsNeeded: "Fragmentos necessários para a forma completa",
     stages: ["Voz", "Silhueta", "Presença", "Forma completa"],
   },
   en: {
@@ -339,6 +343,8 @@ const LITERARY_COPY: Record<Locale, LiteraryCopy> = {
     memoryTitle: "Memory Fragments",
     memoryBody: "A literary journey that grows through reading, reviews, and discoveries.",
     journeyNote: "Narrative journey in development",
+    portraitLocked: "Yas's presence is still dormant.",
+    fragmentsNeeded: "Fragments needed for the complete form",
     stages: ["Voice", "Silhouette", "Presence", "Complete form"],
   },
   es: {
@@ -366,6 +372,8 @@ const LITERARY_COPY: Record<Locale, LiteraryCopy> = {
     memoryTitle: "Fragmentos de Memoria",
     memoryBody: "Un viaje literario que crece con lecturas, reseñas y descubrimientos.",
     journeyNote: "Viaje narrativo en desarrollo",
+    portraitLocked: "La presencia de Yas aún está dormida.",
+    fragmentsNeeded: "Fragmentos necesarios para la forma completa",
     stages: ["Voz", "Silueta", "Presencia", "Forma completa"],
   },
   fr: {
@@ -393,6 +401,8 @@ const LITERARY_COPY: Record<Locale, LiteraryCopy> = {
     memoryTitle: "Fragments de Mémoire",
     memoryBody: "Un voyage littéraire qui grandit au fil des lectures et des découvertes.",
     journeyNote: "Parcours narratif en développement",
+    portraitLocked: "La présence de Yas est encore endormie.",
+    fragmentsNeeded: "Fragments nécessaires pour la forme complète",
     stages: ["Voix", "Silhouette", "Présence", "Forme complète"],
   },
   de: {
@@ -420,6 +430,8 @@ const LITERARY_COPY: Record<Locale, LiteraryCopy> = {
     memoryTitle: "Erinnerungsfragmente",
     memoryBody: "Eine literarische Reise, die mit Lesen und Entdeckungen wächst.",
     journeyNote: "Erzählreise in Entwicklung",
+    portraitLocked: "Yas' Präsenz ruht noch.",
+    fragmentsNeeded: "Fragmente für die vollständige Form",
     stages: ["Stimme", "Silhouette", "Präsenz", "Vollständige Form"],
   },
   ar: {
@@ -447,6 +459,8 @@ const LITERARY_COPY: Record<Locale, LiteraryCopy> = {
     memoryTitle: "شظايا الذاكرة",
     memoryBody: "رحلة أدبية تنمو بالقراءة والمراجعات والاكتشافات.",
     journeyNote: "رحلة سردية قيد التطوير",
+    portraitLocked: "لا يزال حضور Yas نائمًا.",
+    fragmentsNeeded: "الشظايا اللازمة للشكل الكامل",
     stages: ["الصوت", "الظل", "الحضور", "الشكل الكامل"],
   },
   zh: {
@@ -474,6 +488,8 @@ const LITERARY_COPY: Record<Locale, LiteraryCopy> = {
     memoryTitle: "记忆碎片",
     memoryBody: "一段随阅读、评论和发现不断成长的文学旅程。",
     journeyNote: "叙事旅程正在开发中",
+    portraitLocked: "Yas 的存在仍在沉睡。",
+    fragmentsNeeded: "完整形态所需的记忆碎片",
     stages: ["声音", "轮廓", "现身", "完整形态"],
   },
   ja: {
@@ -501,6 +517,8 @@ const LITERARY_COPY: Record<Locale, LiteraryCopy> = {
     memoryTitle: "記憶のかけら",
     memoryBody: "読書やレビュー、発見とともに成長する文学の旅。",
     journeyNote: "物語体験は開発中です",
+    portraitLocked: "Yasの存在はまだ眠っています。",
+    fragmentsNeeded: "完全な姿に必要な記憶のかけら",
     stages: ["声", "シルエット", "存在", "完全な姿"],
   },
 };
@@ -535,12 +553,15 @@ export function YasSite({ view }: { view: SiteView }) {
   const [bookQuery, setBookQuery] = useState("");
   const [bookCategory, setBookCategory] = useState<"all" | BookCategory>("all");
   const [previewBook, setPreviewBook] = useState<string | null>(null);
+  const [memoryFragments, setMemoryFragments] = useState(0);
   const [messages, setMessages] = useState<Message[]>([]);
   const [loading, setLoading] = useState(false);
   const conversationEnd = useRef<HTMLDivElement>(null);
   const copy = COPY[locale];
   const site = SITE_COPY[locale];
   const literary = LITERARY_COPY[locale];
+  const manifestationLevel =
+    memoryFragments >= 25 ? 4 : memoryFragments >= 12 ? 3 : memoryFragments >= 5 ? 2 : memoryFragments >= 1 ? 1 : 0;
   const normalizedBookQuery = bookQuery.trim().toLocaleLowerCase(locale);
   const visibleBooks = BOOKS.filter((book) => {
     const matchesCategory = bookCategory === "all" || book.category === bookCategory;
@@ -552,6 +573,11 @@ export function YasSite({ view }: { view: SiteView }) {
     const saved = window.localStorage.getItem("yas-language") as Locale | null;
     const next = saved && COPY[saved] ? saved : detectLocale(navigator.languages);
     setLocale(next);
+    const savedFragments = Number.parseInt(
+      window.localStorage.getItem("yas-memory-fragments") || "0",
+      10,
+    );
+    setMemoryFragments(Number.isFinite(savedFragments) ? Math.max(0, Math.min(100, savedFragments)) : 0);
   }, []);
 
   useEffect(() => {
@@ -580,6 +606,7 @@ export function YasSite({ view }: { view: SiteView }) {
         body: JSON.stringify({
           question: value,
           locale,
+          memoryFragments,
           history: messages.slice(-3).flatMap((message) => [
             { role: "user", content: message.question },
             { role: "assistant", content: message.answer },
@@ -817,9 +844,20 @@ export function YasSite({ view }: { view: SiteView }) {
 
         {view === "guardian" && (
         <section className="guardian-section" id="conheca-yas">
-          <div className="guardian-portrait">
-            <img src="/yas-guardian.png" alt={literary.guardianTitle} />
+          <div className={`guardian-portrait manifestation-level-${manifestationLevel}`}>
+            {manifestationLevel >= 2 ? (
+              <img src="/yas-guardian.png" alt={literary.guardianTitle} />
+            ) : (
+              <div className="dormant-guardian" aria-label={literary.portraitLocked}>
+                <i aria-hidden="true">✦</i>
+                <strong>{manifestationLevel === 1 ? literary.stages[0] : literary.portraitLocked}</strong>
+              </div>
+            )}
             <span aria-hidden="true" />
+            <div className="fragment-seal">
+              <b>{memoryFragments} / 25</b>
+              <small>{literary.fragmentsNeeded}</small>
+            </div>
           </div>
           <div className="guardian-story">
             <p className="section-kicker">{literary.guardianEyebrow}</p>
@@ -835,8 +873,8 @@ export function YasSite({ view }: { view: SiteView }) {
               </div>
               <div className="memory-path">
                 {literary.stages.map((stage, index) => (
-                  <div className={index === 0 ? "unlocked" : ""} key={stage}>
-                    <i>{index === 0 ? "✦" : index + 1}</i>
+                  <div className={manifestationLevel > index ? "unlocked" : ""} key={stage}>
+                    <i>{manifestationLevel > index ? "✦" : [1, 5, 12, 25][index]}</i>
                     <span>{stage}</span>
                   </div>
                 ))}

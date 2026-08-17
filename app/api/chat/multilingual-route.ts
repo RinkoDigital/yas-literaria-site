@@ -22,7 +22,8 @@ YAS LITERÁRIA — CURRENT SITE KNOWLEDGE:
 - Visitors can search and filter the demonstration bookshelf by fantasy, mystery, and classics.
 - The site has separate pages: Home (/), Library (/biblioteca), Meet Yas (/yas), YAS Assistant (/assistente), and About (/sobre).
 - Premium content, audiobooks, offline reading, subscriptions, user accounts, favorites, reviews, author publishing, and payments are product ideas or planned features; they are not currently active. Never claim they are available.
-- Yas is the fictional guardian of the library, described as the living spirit of stories. Her narrative progression is called Memory Fragments. The progression experience is still in development.
+- Yas is the fictional guardian of the library, described as the living spirit of stories. Her manifestation is controlled by Memory Fragments: Voice at 1, Silhouette at 5, Presence at 12, and Complete Form at 25.
+- The current build enforces those visibility thresholds, but public activities that earn fragments are not active yet. Never tell a visitor that merely opening a page earned a fragment.
 - The current Memory Fragments concept evolves through four stages: Voice, Silhouette, Presence, and Complete Form.
 - The documentary area contains 65 court transcripts related to Michael Jackson's 2005 trial. Questions about that case must be answered from the transcripts through file_search and must follow the legal-source rules below.
 - The project is independent, educational, and not legal advice. It is not an official Michael Jackson, court, or estate website.
@@ -172,16 +173,21 @@ export async function POST(request: Request) {
   let question = "";
   let locale = "en";
   let history: Array<{ role: "user" | "assistant"; content: string }> = [];
+  let memoryFragments = 0;
 
   try {
     const body = (await request.json()) as {
       question?: unknown;
       locale?: unknown;
       history?: unknown;
+      memoryFragments?: unknown;
     };
     question = typeof body.question === "string" ? body.question.trim() : "";
     if (typeof body.locale === "string" && LOCALE_NAMES[body.locale]) {
       locale = body.locale;
+    }
+    if (Number.isFinite(Number(body.memoryFragments))) {
+      memoryFragments = Math.max(0, Math.min(100, Math.floor(Number(body.memoryFragments))));
     }
     if (Array.isArray(body.history)) {
       history = body.history
@@ -210,6 +216,8 @@ export async function POST(request: Request) {
 
   const apiKey = await resolveOpenAIApiKey(runtimeEnv);
   const vectorStoreId = runtimeEnv.OPENAI_VECTOR_STORE_ID;
+  const permittedMemories =
+    memoryFragments >= 25 ? 10 : memoryFragments >= 12 ? 6 : memoryFragments >= 5 ? 3 : memoryFragments >= 1 ? 1 : 0;
 
   if (!apiKey || !vectorStoreId) {
     return json({ error: "archive_not_configured" }, 503);
@@ -218,6 +226,12 @@ export async function POST(request: Request) {
   const instructions = `You are YAS, the friendly literary and documentary assistant for YAS Literária.
 
 ${YAS_PERSONA}
+
+CURRENT VISITOR MEMORY STATE:
+- The visitor currently has ${memoryFragments} Memory Fragments.
+- They may access at most ${permittedMemories} of Yas's canonical memories.
+- Never reveal a memory above that limit and never claim that a new fragment was earned or permanently saved.
+- Manifestation thresholds are strict: no appearance at 0, voice only at 1-4, silhouette at 5-11, partial presence at 12-24, and complete form only at 25 or more.
 
 LANGUAGE AND ACCESSIBILITY:
 - Detect the language used in the visitor's question and answer in that same language, unless the visitor explicitly asks for another language.
