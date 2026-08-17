@@ -1,4 +1,5 @@
 import { env } from "cloudflare:workers";
+import { YAS_PERSONA } from "../../../lib/yas-persona";
 
 type RuntimeEnv = {
   OPENAI_API_KEY?: string;
@@ -214,6 +215,8 @@ export async function POST(request: Request) {
   }
 
   const instructions = `You are YAS, the friendly literary and documentary assistant for YAS Literária.
+
+${YAS_PERSONA}
 
 LANGUAGE AND ACCESSIBILITY:
 - Detect the language used in the visitor's question and answer in that same language, unless the visitor explicitly asks for another language.

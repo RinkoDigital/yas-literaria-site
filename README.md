@@ -6,9 +6,9 @@ Biblioteca digital multilíngue da Rinko Digital com uma experiência literária
 
 - página inicial cinematográfica e responsiva;
 - biblioteca em estantes com busca e filtros;
-- apresentação da personagem Yas e dos Fragmentos de Memória;
+- apresentação da personagem Yas, sua personalidade original e os Fragmentos de Memória;
 - interface em português, inglês, espanhol, francês, alemão, árabe, chinês e japonês;
-- chat documental com RAG, citações e linguagem simples;
+- chat literário e documental com personalidade própria, memória curta da conversa, RAG, citações e linguagem simples;
 - API protegida no servidor, sem expor a chave da OpenAI no navegador;
 - aviso educativo e distinção entre fatos processuais, alegações, argumentos e depoimentos.
 

@@ -58,6 +58,7 @@ type LiteraryCopy = {
   guardianTitle: string;
   guardianBody: string;
   guardianQuote: string;
+  personaTraits: string;
   memoryTitle: string;
   memoryBody: string;
   journeyNote: string;
@@ -306,6 +307,7 @@ const LITERARY_COPY: Record<Locale, LiteraryCopy> = {
     guardianBody:
       "Yas existe desde a primeira palavra escrita. A cada leitura, o leitor encontra Fragmentos de Memória e ajuda a guardiã a recuperar sua voz, sua forma e a história da própria biblioteca.",
     guardianQuote: "As histórias nunca morrem. Elas apenas esperam pelo próximo leitor.",
+    personaTraits: "Calma • Misteriosa • Acolhedora • Sábia",
     memoryTitle: "Fragmentos de Memória",
     memoryBody: "Uma jornada literária que cresce com leituras, resenhas e descobertas.",
     journeyNote: "Jornada narrativa em desenvolvimento",
@@ -333,6 +335,7 @@ const LITERARY_COPY: Record<Locale, LiteraryCopy> = {
     guardianBody:
       "Yas has existed since the first written word. With every reading, readers find Memory Fragments and help the guardian recover her voice, her form, and the library’s own story.",
     guardianQuote: "Stories never die. They simply wait for the next reader.",
+    personaTraits: "Calm • Mysterious • Welcoming • Wise",
     memoryTitle: "Memory Fragments",
     memoryBody: "A literary journey that grows through reading, reviews, and discoveries.",
     journeyNote: "Narrative journey in development",
@@ -359,6 +362,7 @@ const LITERARY_COPY: Record<Locale, LiteraryCopy> = {
     guardianTitle: "Conoce a Yas, guardiana de la biblioteca.",
     guardianBody: "Yas existe desde la primera palabra escrita. Con cada lectura, el lector encuentra Fragmentos de Memoria y la ayuda a recuperar su voz, su forma y la historia de la biblioteca.",
     guardianQuote: "Las historias nunca mueren. Solo esperan al próximo lector.",
+    personaTraits: "Calmada • Misteriosa • Acogedora • Sabia",
     memoryTitle: "Fragmentos de Memoria",
     memoryBody: "Un viaje literario que crece con lecturas, reseñas y descubrimientos.",
     journeyNote: "Viaje narrativo en desarrollo",
@@ -385,6 +389,7 @@ const LITERARY_COPY: Record<Locale, LiteraryCopy> = {
     guardianTitle: "Découvrez Yas, gardienne de la bibliothèque.",
     guardianBody: "Yas existe depuis le premier mot écrit. À chaque lecture, les lecteurs trouvent des Fragments de Mémoire et l’aident à retrouver sa voix, sa forme et l’histoire de la bibliothèque.",
     guardianQuote: "Les histoires ne meurent jamais. Elles attendent simplement le prochain lecteur.",
+    personaTraits: "Calme • Mystérieuse • Accueillante • Sage",
     memoryTitle: "Fragments de Mémoire",
     memoryBody: "Un voyage littéraire qui grandit au fil des lectures et des découvertes.",
     journeyNote: "Parcours narratif en développement",
@@ -411,6 +416,7 @@ const LITERARY_COPY: Record<Locale, LiteraryCopy> = {
     guardianTitle: "Lernen Sie Yas kennen, die Hüterin der Bibliothek.",
     guardianBody: "Yas existiert seit dem ersten geschriebenen Wort. Mit jeder Lektüre finden Leser Erinnerungsfragmente und helfen ihr, Stimme, Gestalt und die Geschichte der Bibliothek zurückzugewinnen.",
     guardianQuote: "Geschichten sterben nie. Sie warten nur auf den nächsten Leser.",
+    personaTraits: "Ruhig • Geheimnisvoll • Einladend • Weise",
     memoryTitle: "Erinnerungsfragmente",
     memoryBody: "Eine literarische Reise, die mit Lesen und Entdeckungen wächst.",
     journeyNote: "Erzählreise in Entwicklung",
@@ -437,6 +443,7 @@ const LITERARY_COPY: Record<Locale, LiteraryCopy> = {
     guardianTitle: "تعرّف إلى Yas، حارسة المكتبة.",
     guardianBody: "توجد Yas منذ أول كلمة مكتوبة. ومع كل قراءة يعثر القارئ على شظايا الذاكرة ويساعدها على استعادة صوتها وشكلها وحكاية المكتبة.",
     guardianQuote: "القصص لا تموت، بل تنتظر القارئ التالي.",
+    personaTraits: "هادئة • غامضة • مرحّبة • حكيمة",
     memoryTitle: "شظايا الذاكرة",
     memoryBody: "رحلة أدبية تنمو بالقراءة والمراجعات والاكتشافات.",
     journeyNote: "رحلة سردية قيد التطوير",
@@ -463,6 +470,7 @@ const LITERARY_COPY: Record<Locale, LiteraryCopy> = {
     guardianTitle: "认识图书馆守护者 Yas。",
     guardianBody: "Yas 自第一个文字诞生起便已存在。每次阅读都会发现记忆碎片，帮助她找回声音、形态与图书馆自身的故事。",
     guardianQuote: "故事永不消逝，它们只是在等待下一位读者。",
+    personaTraits: "沉静 • 神秘 • 温暖 • 睿智",
     memoryTitle: "记忆碎片",
     memoryBody: "一段随阅读、评论和发现不断成长的文学旅程。",
     journeyNote: "叙事旅程正在开发中",
@@ -489,6 +497,7 @@ const LITERARY_COPY: Record<Locale, LiteraryCopy> = {
     guardianTitle: "図書館の守護者 Yasに会いましょう。",
     guardianBody: "Yasは最初の言葉が記された時から存在しています。読書を重ねて記憶のかけらを見つけ、彼女の声と姿、図書館の物語を取り戻します。",
     guardianQuote: "物語は決して死なない。次の読者を待っているだけ。",
+    personaTraits: "穏やか • 神秘的 • 温かい • 賢明",
     memoryTitle: "記憶のかけら",
     memoryBody: "読書やレビュー、発見とともに成長する文学の旅。",
     journeyNote: "物語体験は開発中です",
@@ -763,6 +772,7 @@ export default function Home() {
             <p className="section-kicker">{literary.guardianEyebrow}</p>
             <h2>{literary.guardianTitle}</h2>
             <p className="guardian-body">{literary.guardianBody}</p>
+            <p className="persona-traits">{literary.personaTraits}</p>
             <blockquote>“{literary.guardianQuote}”</blockquote>
 
             <div className="memory-card">
