@@ -83,6 +83,12 @@ a { color: inherit; }
   border-bottom: 1px solid rgba(244, 215, 143, 0.16);
   background: linear-gradient(180deg, rgba(4, 2, 1, 0.62), transparent);
 }
+.inner-topbar {
+  position: relative;
+  min-height: 92px;
+  background: linear-gradient(180deg, #130a05, #090503);
+}
+.inner-main { min-height: calc(100svh - 184px); background: var(--night); }
 .wordmark {
   width: max-content;
   color: #fff4d8;
@@ -192,6 +198,38 @@ a { color: inherit; }
   background: var(--gold-light);
   animation: scroll-dot 1.8s ease-in-out infinite;
 }
+.portal-section {
+  position: relative;
+  padding: clamp(90px, 12vw, 160px) clamp(22px, 7vw, 110px);
+  background:
+    radial-gradient(circle at 8% 0%, rgba(211, 164, 81, 0.1), transparent 30%),
+    linear-gradient(180deg, #0d0704, #190c05);
+}
+.portal-heading { margin: 0 auto; text-align: center; }
+.portal-heading > p:last-child { margin-inline: auto; }
+.portal-grid {
+  width: min(1180px, 100%);
+  margin: 68px auto 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  border: 1px solid rgba(244, 215, 143, 0.18);
+  background: rgba(244, 215, 143, 0.18);
+}
+.portal-grid a {
+  min-height: 330px;
+  position: relative;
+  padding: 34px;
+  color: inherit;
+  background: linear-gradient(145deg, #160b06, #0e0805);
+  text-decoration: none;
+  transition: background .25s ease, transform .25s ease;
+}
+.portal-grid a:hover, .portal-grid a:focus-visible { z-index: 1; background: #241208; transform: translateY(-5px); outline: 1px solid var(--gold); }
+.portal-grid a > span { color: var(--gold); letter-spacing: .18em; font: 700 .68rem Arial, sans-serif; }
+.portal-grid h3 { margin: 78px 0 15px; color: #fff1d1; font-size: 2rem; font-weight: 400; }
+.portal-grid p { margin: 0; color: rgba(247,236,210,.58); font: 400 .9rem/1.65 Arial, sans-serif; }
+.portal-grid b { position: absolute; inset-inline-end: 30px; bottom: 28px; color: var(--gold-light); font: 400 1.2rem Arial, sans-serif; }
 .library-section {
   position: relative;
   padding: clamp(90px, 12vw, 160px) clamp(22px, 7vw, 110px);
@@ -412,6 +450,24 @@ a { color: inherit; }
 .memory-path .unlocked { color:var(--gold-light); }
 .memory-path .unlocked i { color:#170b04; border-color:var(--gold-light); background:radial-gradient(circle,#ffe7a8,#bd7f2d); box-shadow:0 0 24px rgba(244,200,107,.3); }
 .memory-card > small { display:block; margin-top:22px; color:rgba(247,236,210,.34); text-transform:uppercase; letter-spacing:.16em; font:700 .55rem Arial,sans-serif; }
+.about-section {
+  min-height: calc(100svh - 92px);
+  padding: clamp(86px, 11vw, 145px) clamp(22px, 8vw, 130px);
+  background:
+    radial-gradient(circle at 80% 20%, rgba(211,164,81,.12), transparent 30%),
+    linear-gradient(135deg, #0b0603, #1b0d06 54%, #090503);
+}
+.about-copy { width: min(1100px, 100%); margin: 0 auto; }
+.about-copy > h1 { max-width: 900px; margin: 0; color:#fff1d1; font-size:clamp(3rem,7vw,6.7rem); font-weight:400; line-height:.98; letter-spacing:-.04em; }
+.about-copy > p { max-width:720px; margin:30px 0 0; color:rgba(247,236,210,.67); font:400 1rem/1.8 Arial,sans-serif; }
+.about-facts { display:grid; grid-template-columns:repeat(3,1fr); gap:1px; margin-top:65px; border:1px solid rgba(244,215,143,.18); background:rgba(244,215,143,.18); }
+.about-facts article { min-height:230px; padding:28px; background:rgba(10,5,3,.88); }
+.about-facts article > span { color:var(--gold); font:700 .65rem Arial,sans-serif; letter-spacing:.16em; }
+.about-facts h2 { margin:54px 0 12px; color:#fff1d1; font-size:1.6rem; font-weight:400; }
+.about-facts p { margin:0; color:rgba(247,236,210,.54); font:400 .82rem/1.65 Arial,sans-serif; }
+.about-legal { margin-top:28px; display:flex; gap:14px; align-items:flex-start; color:rgba(247,236,210,.54); font:400 .75rem/1.65 Arial,sans-serif; }
+.about-legal > span { flex:0 0 24px; height:24px; display:grid; place-items:center; border:1px solid var(--gold); border-radius:50%; color:var(--gold); }
+.about-legal p { margin:1px 0 0; }
 .research-section {
   padding: clamp(86px, 12vw, 150px) clamp(18px, 6vw, 92px);
   color: var(--ink);
@@ -554,25 +610,42 @@ footer p { margin: 0; }
 
 @media (max-width: 900px) {
   .topbar { grid-template-columns: 1fr auto; }
-  .topbar nav { display: none; }
+  .topbar nav {
+    grid-column: 1 / -1;
+    width: 100%;
+    display: flex;
+    gap: 19px;
+    overflow-x: auto;
+    padding: 8px 0 4px;
+    scrollbar-width: none;
+  }
+  .topbar nav::-webkit-scrollbar { display: none; }
+  .topbar nav a { flex: 0 0 auto; font-size: .62rem; }
+  .inner-topbar { min-height: 126px; }
+  .portal-grid { grid-template-columns: 1fr; }
+  .portal-grid a { min-height: 255px; }
+  .portal-grid h3 { margin-top: 50px; }
   .catalog-head { grid-template-columns: 1fr; align-items: start; }
   .book { width: clamp(86px, 16vw, 126px); }
   .books-row { gap: 8px; overflow-x: auto; justify-content: start; padding-top: 12px; }
   .guardian-section { grid-template-columns: 1fr; }
   .guardian-portrait { min-height: 680px; width: min(620px, 100%); margin: 0 auto; }
+  .about-facts { grid-template-columns:1fr; }
   .research-intro { grid-template-columns: 1fr; align-items: start; }
   footer { grid-template-columns: 1fr; gap: 12px; }
 }
 
 @media (max-width: 620px) {
-  .topbar { min-height: 72px; padding: 14px 18px; gap: 12px; }
+  .topbar { min-height: 112px; padding: 14px 18px; gap: 8px 12px; }
   .wordmark { font-size: 0.85rem; }
   .language-control > span { display: none; }
   .language-control select { max-width: 100px; }
-  .hero-content { padding-top: 110px; }
+  .hero-content { padding-top: 158px; }
   .hero-content h1 { font-size: clamp(3.2rem, 20vw, 5.2rem); }
   .hero-actions { display: grid; }
   .button { width: min(290px, 100%); }
+  .portal-section { padding-inline:18px; }
+  .portal-grid a { padding:28px; }
   .library-section { padding-inline: 18px; }
   .catalog-panel { margin-top: 48px; }
   .catalog-head { padding: 25px 20px; }
@@ -593,6 +666,8 @@ footer p { margin: 0; }
   .memory-card { padding:18px 12px; }
   .memory-path { gap:5px; }
   .memory-path div { font-size:.54rem; }
+  .about-section { padding-inline:18px; }
+  .about-facts article { padding:24px; }
   .research-section { padding-inline: 12px; }
   .research-intro { padding-inline: 8px; }
   .chat-shell { border-inline: 0; }
