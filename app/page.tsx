@@ -85,10 +85,10 @@ const SITE_COPY: Record<Locale, SiteCopy> = {
     cardTwoBody: "Documentos preservados com contexto, cuidado e respeito às fontes.",
     cardThreeTitle: "Pesquisa",
     cardThreeBody: "Perguntas em linguagem simples, com respostas que mostram onde conferir.",
-    aiEyebrow: "Arquivo documental • 65 transcrições",
-    aiTitle: "Pergunte à YAS sobre o julgamento de 2005.",
+    aiEyebrow: "Assistente da biblioteca • arquivo documental",
+    aiTitle: "Pergunte à YAS sobre o site, a biblioteca ou o julgamento.",
     aiBody:
-      "A assistente consulta as transcrições judiciais, explica termos legais sem complicação e diferencia fatos processuais, alegações, argumentos e depoimentos.",
+      "A assistente apresenta a YAS Literária, orienta visitantes pela biblioteca e, nas perguntas sobre o julgamento de 2005, consulta as transcrições e mostra as fontes.",
     sources: "Fontes recuperadas",
     legalNote:
       "Uma transcrição registra o que foi dito no tribunal; ela não torna automaticamente verdadeira cada declaração. Este projeto é educativo, independente e não oferece aconselhamento jurídico.",
@@ -113,10 +113,10 @@ const SITE_COPY: Record<Locale, SiteCopy> = {
     cardTwoBody: "Documents preserved with context, care, and respect for the sources.",
     cardThreeTitle: "Research",
     cardThreeBody: "Plain-language questions with answers that show where to verify.",
-    aiEyebrow: "Document archive • 65 transcripts",
-    aiTitle: "Ask YAS about the 2005 trial.",
+    aiEyebrow: "Library assistant • document archive",
+    aiTitle: "Ask YAS about the site, library, or trial.",
     aiBody:
-      "The assistant searches court transcripts, explains legal terms plainly, and separates procedural facts from allegations, arguments, and testimony.",
+      "The assistant introduces YAS Literary, guides visitors through the library, and searches the transcripts with citations for questions about the 2005 trial.",
     sources: "Retrieved sources",
     legalNote:
       "A transcript records what was said in court; it does not automatically make every statement true. This independent educational project does not provide legal advice.",
@@ -141,10 +141,10 @@ const SITE_COPY: Record<Locale, SiteCopy> = {
     cardTwoBody: "Documentos preservados con contexto, cuidado y respeto por las fuentes.",
     cardThreeTitle: "Investigación",
     cardThreeBody: "Preguntas sencillas con respuestas que muestran dónde verificar.",
-    aiEyebrow: "Archivo documental • 65 transcripciones",
-    aiTitle: "Pregunta a YAS sobre el juicio de 2005.",
+    aiEyebrow: "Asistente de la biblioteca • archivo documental",
+    aiTitle: "Pregunta a YAS sobre el sitio, la biblioteca o el juicio.",
     aiBody:
-      "La asistente consulta las transcripciones, explica términos jurídicos y diferencia hechos procesales, alegaciones, argumentos y testimonios.",
+      "La asistente presenta YAS Literaria, guía a los visitantes por la biblioteca y consulta las transcripciones con fuentes para preguntas sobre el juicio de 2005.",
     sources: "Fuentes recuperadas",
     legalNote:
       "Una transcripción registra lo dicho ante el tribunal; no convierte automáticamente cada declaración en verdad. Este proyecto educativo e independiente no ofrece asesoramiento jurídico.",
@@ -169,10 +169,10 @@ const SITE_COPY: Record<Locale, SiteCopy> = {
     cardTwoBody: "Des documents préservés avec contexte, soin et respect des sources.",
     cardThreeTitle: "Recherche",
     cardThreeBody: "Des questions simples et des réponses qui indiquent où vérifier.",
-    aiEyebrow: "Archives documentaires • 65 transcriptions",
-    aiTitle: "Interrogez YAS sur le procès de 2005.",
+    aiEyebrow: "Assistante de la bibliothèque • archives",
+    aiTitle: "Interrogez YAS sur le site, la bibliothèque ou le procès.",
     aiBody:
-      "L’assistante consulte les transcriptions, explique simplement le vocabulaire juridique et distingue faits de procédure, allégations, arguments et témoignages.",
+      "L’assistante présente YAS Littéraire, guide les visiteurs et consulte les transcriptions avec leurs sources pour les questions sur le procès de 2005.",
     sources: "Sources retrouvées",
     legalNote:
       "Une transcription rapporte ce qui a été dit au tribunal ; elle ne rend pas automatiquement chaque déclaration vraie. Ce projet éducatif indépendant ne fournit pas de conseil juridique.",
@@ -197,10 +197,10 @@ const SITE_COPY: Record<Locale, SiteCopy> = {
     cardTwoBody: "Dokumente mit Kontext, Sorgfalt und Respekt vor den Quellen.",
     cardThreeTitle: "Recherche",
     cardThreeBody: "Einfache Fragen mit Antworten, die zeigen, wo man nachprüfen kann.",
-    aiEyebrow: "Dokumentenarchiv • 65 Protokolle",
-    aiTitle: "Fragen Sie YAS zum Prozess von 2005.",
+    aiEyebrow: "Bibliotheksassistenz • Dokumentenarchiv",
+    aiTitle: "Fragen Sie YAS zur Website, Bibliothek oder zum Prozess.",
     aiBody:
-      "Die Assistentin durchsucht Gerichtsprotokolle, erklärt Rechtsbegriffe einfach und trennt Verfahrensfakten von Behauptungen, Argumenten und Aussagen.",
+      "Die Assistentin erklärt YAS Literatur, führt durch die Bibliothek und durchsucht bei Fragen zum Prozess von 2005 die Protokolle mit Quellenangaben.",
     sources: "Gefundene Quellen",
     legalNote:
       "Ein Protokoll hält fest, was vor Gericht gesagt wurde; es macht nicht automatisch jede Aussage wahr. Dieses unabhängige Bildungsprojekt bietet keine Rechtsberatung.",
@@ -224,9 +224,9 @@ const SITE_COPY: Record<Locale, SiteCopy> = {
     cardTwoBody: "وثائق محفوظة بعناية وسياق واحترام للمصادر.",
     cardThreeTitle: "البحث",
     cardThreeBody: "أسئلة بسيطة وإجابات توضّح أين يمكن التحقق.",
-    aiEyebrow: "أرشيف وثائقي • 65 محضرًا",
-    aiTitle: "اسأل YAS عن محاكمة عام 2005.",
-    aiBody: "تبحث المساعدة في محاضر المحكمة وتشرح المصطلحات القانونية ببساطة وتفصل بين الوقائع والادعاءات والحجج والشهادات.",
+    aiEyebrow: "مساعدة المكتبة • الأرشيف الوثائقي",
+    aiTitle: "اسأل YAS عن الموقع أو المكتبة أو المحاكمة.",
+    aiBody: "تعرّف المساعدة الزوار إلى YAS الأدبية وتوجّههم في المكتبة، وتبحث في المحاضر مع ذكر المصادر عند السؤال عن محاكمة 2005.",
     sources: "المصادر المسترجعة",
     legalNote: "يسجل المحضر ما قيل في المحكمة ولا يجعل كل قول صحيحًا تلقائيًا. هذا مشروع تعليمي مستقل ولا يقدم استشارة قانونية.",
     madeBy: "الموقع والذكاء الاصطناعي من تطوير Rinko Digital",
@@ -249,9 +249,9 @@ const SITE_COPY: Record<Locale, SiteCopy> = {
     cardTwoBody: "以背景、谨慎和对来源的尊重保存文件。",
     cardThreeTitle: "研究",
     cardThreeBody: "用简单问题获得可核查来源的回答。",
-    aiEyebrow: "文献档案 • 65 份法庭记录",
-    aiTitle: "向 YAS 询问 2005 年审判。",
-    aiBody: "助手检索法庭记录，用通俗语言解释法律术语，并区分程序事实、指控、论点和证词。",
+    aiEyebrow: "图书馆助手 • 文献档案",
+    aiTitle: "向 YAS 询问网站、图书馆或审判。",
+    aiBody: "助手会介绍 YAS 文学并帮助访客使用图书馆；涉及 2005 年审判的问题则会检索法庭记录并注明来源。",
     sources: "检索到的来源",
     legalNote: "法庭记录只记载庭上所说的内容，并不自动证明每项陈述都是真实的。本独立教育项目不提供法律意见。",
     madeBy: "网站与人工智能由 Rinko Digital 开发",
@@ -274,9 +274,9 @@ const SITE_COPY: Record<Locale, SiteCopy> = {
     cardTwoBody: "背景と配慮、情報源への敬意をもって文書を保存します。",
     cardThreeTitle: "調査",
     cardThreeBody: "やさしい質問と、確認先を示す回答を提供します。",
-    aiEyebrow: "文書アーカイブ • 65件の法廷記録",
-    aiTitle: "2005年の裁判についてYASに質問してください。",
-    aiBody: "アシスタントは法廷記録を検索し、法律用語をやさしく説明し、手続上の事実、主張、議論、証言を区別します。",
+    aiEyebrow: "ライブラリー案内 • 文書アーカイブ",
+    aiTitle: "サイト、ライブラリー、裁判についてYASに質問してください。",
+    aiBody: "YAS文学とライブラリーをご案内します。2005年の裁判に関する質問では法廷記録を検索し、出典を示します。",
     sources: "参照した資料",
     legalNote: "法廷記録は法廷で述べられた内容を記録するもので、すべての発言が真実だと自動的に証明するものではありません。本プロジェクトは法的助言を提供しません。",
     madeBy: "サイトとAIはRinko Digitalが開発",
@@ -566,7 +566,14 @@ export default function Home() {
       const response = await fetch("/api/chat", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ question: value, locale }),
+        body: JSON.stringify({
+          question: value,
+          locale,
+          history: messages.slice(-3).flatMap((message) => [
+            { role: "user", content: message.question },
+            { role: "assistant", content: message.answer },
+          ]),
+        }),
       });
       const data = (await response.json()) as {
         answer?: string;
